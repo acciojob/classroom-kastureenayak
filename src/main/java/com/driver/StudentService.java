@@ -1,49 +1,40 @@
 package com.driver;
 
-import java.util.*;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class StudentService {
-
     @Autowired
-    StudentRepository studentRepository;
+    StudentRepository repository;
 
     public void addStudent(Student student){
-        studentRepository.saveStudent(student);
+        repository.addStudent(student);
     }
-
     public void addTeacher(Teacher teacher){
-        studentRepository.saveTeacher(teacher);
+        repository.addTeacher(teacher);
     }
-
-    public void createStudentTeacherPair(String student, String teacher){
-        studentRepository.saveStudentTeacherPair(student, teacher);
+    public void addStudentTeacherPair(String student , String teacher){
+        repository.addStudentTeacherPair(student,teacher);
     }
-
-    public Student findStudent(String studentName){
-        return studentRepository.findStudent(studentName);
+    public Student getStudentByName(String name){
+        return repository.getStudentByName(name);
     }
-
-    public Teacher findTeacher(String teacherName){
-        return studentRepository.findTeacher(teacherName);
+    public Teacher getTeacherByName(String name){
+        return repository.getTeacherByName(name);
     }
-
-    public List<String> findStudentsFromTeacher(String teacher){
-        return studentRepository.findStudentsFromTeacher(teacher);
+    public List<String> getStudentByTeacherName(String teacher){
+        return repository.getStudentByTeacherName(teacher);
     }
-
-    public List<String> findAllStudents(){
-        return studentRepository.findAllStudents();
+    public List<String> getAllStudents(){
+        return repository.getAllStudent();
     }
-
-    public void deleteTeacher(String teacher){
-        studentRepository.deleteTeacher(teacher);
+    public void deleteTeacherByName(String teacher){
+        repository.deleteTeacherByName(teacher);
     }
-
     public void deleteAllTeachers(){
-        studentRepository.deleteAllTeachers();
+        repository.deleteAllTeachers();
     }
 }
